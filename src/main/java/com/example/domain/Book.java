@@ -3,9 +3,7 @@
  */
 package com.example.domain;
 
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
@@ -140,8 +138,13 @@ public class Book {
 	}
 
 	@Override
+	public String toString() {
+		return "Book [id=" + id + ", title=" + title + ", isbn=" + isbn + "]";
+	}
+
+	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(id, isbn, title);
 	}
 
 	@Override
@@ -156,26 +159,6 @@ public class Book {
 			return false;
 		}
 		Book other = (Book) obj;
-		return Objects.equals(id, other.id);
-	}
-
-	@Override
-	public String toString() {
-		final int maxLen = 5;
-		return "Book [id=" + id + ", title=" + title + ", isbn=" + isbn + ", authors="
-				+ (authors != null ? toString(authors, maxLen) : null) + ", publisher=" + publisher + "]";
-	}
-
-	private String toString(Collection<?> collection, int maxLen) {
-		StringBuilder builder = new StringBuilder();
-		builder.append("[");
-		int i = 0;
-		for (Iterator<?> iterator = collection.iterator(); iterator.hasNext() && i < maxLen; i++) {
-			if (i > 0)
-				builder.append(", ");
-			builder.append(iterator.next());
-		}
-		builder.append("]");
-		return builder.toString();
+		return Objects.equals(id, other.id) && Objects.equals(isbn, other.isbn) && Objects.equals(title, other.title);
 	}
 }

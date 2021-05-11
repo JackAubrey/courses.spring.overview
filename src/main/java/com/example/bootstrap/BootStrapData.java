@@ -49,8 +49,8 @@ public class BootStrapData implements CommandLineRunner {
 		Publisher wesley = new Publisher("Addison-Wesley Professional", "Boston", "USA");
 		Publisher mondadory = new Publisher("Mondadory", "Ostiglia", "Italy");
 		
-		publisherRepository.save(wesley);
-		publisherRepository.save(mondadory);
+		wesley = publisherRepository.save(wesley);
+		mondadory = publisherRepository.save(mondadory);
 		
 		ddd.setPublisher(wesley);
 		ddd.getAuthors().add(evans);
@@ -70,22 +70,23 @@ public class BootStrapData implements CommandLineRunner {
 		fowler.getBooks().add(aor);
 		beck.getBooks().add(aor);
 		
-		authorRepository.save(evans);
-		bookRepository.save(ddd);
-		
-		authorRepository.save(oBrian);
-		bookRepository.save(primoComando);
-		
-		authorRepository.save(beck);
-		authorRepository.save(fowler);
-		bookRepository.save(patterns);
-		bookRepository.save(aor);
-		
 		wesley.getBooks().add(patterns);
 		wesley.getBooks().add(aor);
 		wesley.getBooks().add(ddd);
-		
 		mondadory.getBooks().add(primoComando);
+		
+		authorRepository.save(evans);
+		authorRepository.save(oBrian);
+		authorRepository.save(beck);
+		authorRepository.save(fowler);
+		
+		bookRepository.save(ddd);
+		bookRepository.save(primoComando);
+		bookRepository.save(patterns);
+		bookRepository.save(aor);
+		
+		publisherRepository.save(wesley);
+		publisherRepository.save(mondadory);
 		
 		System.out.println("Started in BootStrap");
 		System.out.println("Number of Authors: "+authorRepository.count());

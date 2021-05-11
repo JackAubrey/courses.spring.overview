@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Courses Spring - Author List</title>
+	</head>
+	<body>
+		<table>
+			<thead>
+				<tr>
+					<th id="id">ID</th>
+					<th id="firstName">First Name</th>
+					<th id="lastNamr">Last Name</th>
+					<th id="numBook">Num Books</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="author : ${authors}">
+					<td th:text="${author.id}">1</td>
+					<td th:text="${author.firstName}">First Name</td>
+					<td th:text="${author.lastName}">Last Name</td>
+					<td th:text="${author.books.size}">Number of books</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

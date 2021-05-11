@@ -3,9 +3,7 @@
  */
 package com.example.domain;
 
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
@@ -152,6 +150,17 @@ public class Publisher {
 	}
 
 	@Override
+	public String toString() {
+		return "Publisher [id=" + id + ", addressLine1=" + addressLine1 + ", name=" + name + ", city=" + city
+				+ ", state=" + state + ", zip=" + zip + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(city, id, name, state, zip);
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
@@ -163,32 +172,7 @@ public class Publisher {
 			return false;
 		}
 		Publisher other = (Publisher) obj;
-		return Objects.equals(id, other.id);
-	}
-	
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public String toString() {
-		final int maxLen = 5;
-		return "Publisher [id=" + id + ", addressLine1=" + addressLine1 + ", name=" + name + ", city=" + city
-				+ ", state=" + state + ", zip=" + zip + ", books=" + (books != null ? toString(books, maxLen) : null)
-				+ "]";
-	}
-
-	private String toString(Collection<?> collection, int maxLen) {
-		StringBuilder builder = new StringBuilder();
-		builder.append("[");
-		int i = 0;
-		for (Iterator<?> iterator = collection.iterator(); iterator.hasNext() && i < maxLen; i++) {
-			if (i > 0)
-				builder.append(", ");
-			builder.append(iterator.next());
-		}
-		builder.append("]");
-		return builder.toString();
+		return Objects.equals(city, other.city) && Objects.equals(id, other.id) && Objects.equals(name, other.name)
+				&& Objects.equals(state, other.state) && Objects.equals(zip, other.zip);
 	}
 }
